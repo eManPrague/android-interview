@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface UserDao {
@@ -18,7 +19,10 @@ interface UserDao {
     fun findByName(first: String, last: String): User
 
     @Insert
-    fun insertAll(vararg users: User)
+    suspend fun insertAll(vararg users: User)
+
+    @Update
+    suspend fun update(users: User)
 
     @Delete
     fun delete(user: User)
